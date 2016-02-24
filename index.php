@@ -11,6 +11,7 @@
     <input type="text" name="radius" step="1" placeholder="Введите радиус круга">
     <input type="text" name="x" step="1"  placeholder="Введите координату 'X' фигуры">
     <input type="text" name="y" step="1" placeholder="Введите координату 'Y' фигуры">
+    <input type="number" name="coefficient" step="1" placeholder="Введите коэффициент">
     <input type="submit" value="Результат"><hr />
 </form>
 <form action="?square=1" method="post">

@@ -27,10 +27,11 @@ class Circle extends Figure {
 //    public $radius = 0;
 
 
-    function __construct($x, $y, $radius)
+    function __construct($x, $y, $radius,$coefficient)
     {
         parent::__construct($x, $y);
         $this->radius = $radius;
+        $this->coefficient = $coefficient;
     }
 
     function Show(){
@@ -47,6 +48,7 @@ class Circle extends Figure {
     }
 
     function Scale(){
+        return $this->radius = $this->radius*$this->coefficient;
 
     }
 
@@ -76,6 +78,7 @@ class Sqaure extends Figure {
     }
 
     function Scale(){
+        return $this->height;
 
     }
 
@@ -142,6 +145,8 @@ $x = $_POST['x'];
 $y = $_POST['y'];
 $height = $_POST['height'];
 $width = $_POST['width'];
+$coefficient = $_POST['coefficient'];
+
 
 if($type == 'square') {
     $square = new Sqaure($x,$y,$height,$width);
@@ -149,7 +154,7 @@ if($type == 'square') {
     echo "Стороны прямоугольника: ".$square->height."/".$square->width." Площадь прямоугольника: ".$square->Area()."<br /><hr />";
 } // В зависимости от типа выбранной фигуры
 elseif($type == 'circle') {
-    $circle = new Circle($x,$y,$radius);
+    $circle = new Circle($x,$y,$radius,$coefficient);
     $circle->Show();
     echo "Радиус круга: ". $circle->radius." Площадь круга: ".$circle->Area()."<br /><hr />";
 }
