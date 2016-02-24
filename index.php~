@@ -1,0 +1,8 @@
+<?php
+echo "Hello, world!"
+/**
+ * Created by PhpStorm.
+ * User: zeol
+ * Date: 24.02.16
+ * Time: 12:49
+ */
