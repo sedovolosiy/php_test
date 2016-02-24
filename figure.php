@@ -85,11 +85,11 @@ class Treangle extends Figure {
 
 //    public $a;
 
-    function __construct($x, $y, $a, $h)
+    function __construct($x, $y, $width, $height)
     {
         parent::__construct($x, $y);
-        $this->a = $a;
-        $this->h = $h;
+        $this->width = $width;
+        $this->height = $height;
 
     }
 
@@ -102,7 +102,7 @@ class Treangle extends Figure {
     function Area(){
 //        $p = ($this->a+$this->b+$this->c)/2;
 //        return sqrt($p*($p-$this->a)*($p-$this->b)*($p-$this->c));
-        return ($this->a*$this->h)/2;
+        return ($this->width*$this->height)/2;
 
     }
 
@@ -112,19 +112,19 @@ class Treangle extends Figure {
 
 }
 
-$circle = new Circle(10,15,50);
-$circle->Show();
-echo "Радиус круга: ". $circle->radius." Площадь круга: ".$circle->Area()."<br /><hr />";
-
-
-
-$square = new Sqaure(49,65,50,50);
-$square->Show();
-echo "Стороны прямоугольника: ".$square->height."/".$square->width." Площадь прямоугольника: ".$square->Area()."<br /><hr />";
-
-$treangle = new Treangle(25,25,10,50);
-$treangle->Show();
-echo "Высота треугольника: ".$treangle->h." Основание треугольника: ".$treangle->a." Площадь прямоугольника: ".$treangle->Area()."<br /><hr />";
+//$circle = new Circle(10,15,50);
+//$circle->Show();
+//echo "Радиус круга: ". $circle->radius." Площадь круга: ".$circle->Area()."<br /><hr />";
+//
+//
+//
+//$square = new Sqaure(49,65,50,50);
+//$square->Show();
+//echo "Стороны прямоугольника: ".$square->height."/".$square->width." Площадь прямоугольника: ".$square->Area()."<br /><hr />";
+//
+//$treangle = new Treangle(25,25,10,50);
+//$treangle->Show();
+//echo "Высота треугольника: ".$treangle->h." Основание треугольника: ".$treangle->a." Площадь прямоугольника: ".$treangle->Area()."<br /><hr />";
 /*echo $circle->;
 /*echo "Hello, circle";
 /**
@@ -138,4 +138,25 @@ echo "Высота треугольника: ".$treangle->h." Основание
  */
 $type = $_POST['type'];
 $radius = $_POST['radius'];
-$size = $_POST['size'];
+$x = $_POST['x'];
+$y = $_POST['y'];
+$height = $_POST['height'];
+$width = $_POST['width'];
+
+if($type == 'square') {
+    $square = new Sqaure($x,$y,$height,$width);
+    $square->Show();
+    echo "Стороны прямоугольника: ".$square->height."/".$square->width." Площадь прямоугольника: ".$square->Area()."<br /><hr />";
+} // В зависимости от типа выбранной фигуры
+elseif($type == 'circle') {
+    $circle = new Circle($x,$y,$radius);
+    $circle->Show();
+    echo "Радиус круга: ". $circle->radius." Площадь круга: ".$circle->Area()."<br /><hr />";
+}
+elseif($type == 'treangle') {
+    $treangle = new Treangle($x,$y,$width,$height);
+    $treangle->Show();
+    echo "Высота треугольника: ".$treangle->height." Основание треугольника: ".$treangle->width." Площадь прямоугольника: ".$treangle->Area()."<br /><hr />";
+}// создаём тот или иной объект
+
+?>
