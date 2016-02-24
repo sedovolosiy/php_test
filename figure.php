@@ -5,13 +5,11 @@ abstract class Figure
 {
     public $x = 0;
     public $y = 0;
-    public $coefficient = 1;
 
-    public function __construct($x, $y, $coefficient)
+    public function __construct($x, $y)
     {
         $this->x = $x;
         $this->y = $y;
-        $this->coefficient =$coefficient;
 
     }
 
@@ -35,10 +33,11 @@ class Circle extends Figure
 //    public $radius = 0;
 
 
-    function __construct($x, $y, $radius)
+    function __construct($x, $y, $radius, $coefficient)
     {
         parent::__construct($x, $y);
         $this->radius = $radius;
+        $this->coefficient = $coefficient;
     }
 
     function Show()
