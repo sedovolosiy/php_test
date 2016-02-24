@@ -1,10 +1,13 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-abstract class Figure {
+
+abstract class Figure
+{
     public $x = 0;
     public $y = 0;
 
-    public function __construct($x, $y){
+    public function __construct($x, $y)
+    {
         $this->x = $x;
         $this->y = $y;
 
@@ -14,47 +17,52 @@ abstract class Figure {
 
     abstract function Area();
 
-    abstract function Scale();
+    abstract function setScale();
 
-    function Move($x, $y){
+    function Move($x, $y)
+    {
         $this->x = $x;
         $this->y = $y;
 
 
     }
 }
-class Circle extends Figure {
+
+class Circle extends Figure
+{
 //    public $radius = 0;
 
 
-    function __construct($x, $y, $radius,$coefficient)
+    function __construct($x, $y, $radius, $coefficient)
     {
         parent::__construct($x, $y);
         $this->radius = $radius;
         $this->coefficient = $coefficient;
     }
 
-    function Show(){
-        echo "Координаты фигуры по оси x: ".$this->x."<br />";
-        echo "Координаты фигуры по оси y: ".$this->y."<br />";
+    function Show()
+    {
+        echo "Координаты фигуры по оси x: " . $this->x . "<br />";
+        echo "Координаты фигуры по оси y: " . $this->y . "<br />";
 
     }
 
-
-    function Area(){
-
-        return pow($this->radius,2)*pi();
-
+    public function setScale()
+    {
+        $this->radius = $this->radius * $this->coefficient;
     }
 
-    function Scale(){
-        return $this->radius = $this->radius*$this->coefficient;
+    function Area()
+    {
+
+        return pow($this->radius, 2) * pi();
 
     }
 
 }
 
-class Sqaure extends Figure {
+class Sqaure extends Figure
+{
 
     public $height = 0;
     public $width = 0;
@@ -66,25 +74,29 @@ class Sqaure extends Figure {
         $this->width = $width;
     }
 
-    function Show(){
-        echo "Координаты фигуры по оси x: ".$this->x."<br />";
-        echo "Координаты фигуры по оси y: ".$this->y."<br />";
+    function Show()
+    {
+        echo "Координаты фигуры по оси x: " . $this->x . "<br />";
+        echo "Координаты фигуры по оси y: " . $this->y . "<br />";
 
     }
 
-    function Area(){
-        return $this->height*$this->width;
+    function Area()
+    {
+        return $this->height * $this->width;
 
     }
 
-    function Scale(){
+    function setScale()
+    {
         return $this->height;
 
     }
 
 }
 
-class Treangle extends Figure {
+class Treangle extends Figure
+{
 
 //    public $a;
 
@@ -96,20 +108,23 @@ class Treangle extends Figure {
 
     }
 
-    function Show(){
-        echo "Координаты фигуры по оси x: ".$this->x."<br />";
-        echo "Координаты фигуры по оси y: ".$this->y."<br />";
+    function Show()
+    {
+        echo "Координаты фигуры по оси x: " . $this->x . "<br />";
+        echo "Координаты фигуры по оси y: " . $this->y . "<br />";
 
     }
 
-    function Area(){
+    function Area()
+    {
 //        $p = ($this->a+$this->b+$this->c)/2;
 //        return sqrt($p*($p-$this->a)*($p-$this->b)*($p-$this->c));
-        return ($this->width*$this->height)/2;
+        return ($this->width * $this->height) / 2;
 
     }
 
-    function Scale(){
+    function setScale()
+    {
 
     }
 
@@ -148,20 +163,22 @@ $width = $_POST['width'];
 $coefficient = $_POST['coefficient'];
 
 
-if($type == 'square') {
-    $square = new Sqaure($x,$y,$height,$width);
+if ($type == 'square') {
+    $square = new Sqaure($x, $y, $height, $width);
     $square->Show();
-    echo "Стороны прямоугольника: ".$square->height."/".$square->width." Площадь прямоугольника: ".$square->Area()."<br /><hr />";
+    echo "Стороны прямоугольника: " . $square->height . "/" . $square->width . " Площадь прямоугольника: " . $square->Area() . "<br /><hr />";
 } // В зависимости от типа выбранной фигуры
-elseif($type == 'circle') {
-    $circle = new Circle($x,$y,$radius,$coefficient);
+elseif ($type == 'circle') {
+    $circle = new Circle($x, $y, $radius, $coefficient);
+    if (!empty($coefficient)) {
+        $circle->setScale();
+    }
     $circle->Show();
-    echo "Радиус круга: ". $circle->radius." Площадь круга: ".$circle->Area()."<br /><hr />";
-}
-elseif($type == 'treangle') {
-    $treangle = new Treangle($x,$y,$width,$height);
+    echo "Радиус круга: " . $circle->radius . " Площадь круга: " . $circle->Area() . "<br /><hr />";
+} elseif ($type == 'treangle') {
+    $treangle = new Treangle($x, $y, $width, $height);
     $treangle->Show();
-    echo "Высота треугольника: ".$treangle->height." Основание треугольника: ".$treangle->width." Площадь прямоугольника: ".$treangle->Area()."<br /><hr />";
+    echo "Высота треугольника: " . $treangle->height . " Основание треугольника: " . $treangle->width . " Площадь прямоугольника: " . $treangle->Area() . "<br /><hr />";
 }// создаём тот или иной объект
 
 ?>
