@@ -36,6 +36,14 @@ class Circles implements Figures
 }
 class Squared implements Figures
 {
+    function __construct($x, $y, $height, $width, $coefficient)
+    {
+        $this->height = $height;
+        $this->width = $width;
+        $this->coefficient = $coefficient;
+        $this->x = $x;
+        $this->y = $y;
+    }
     public function show()
     {
 
@@ -54,6 +62,14 @@ class Squared implements Figures
 
 class Treangles implements Figures
 {
+    function __construct($x, $y, $width, $height, $coefficient)
+    {
+        $this->width = $width;
+        $this->height = $height;
+        $this->coefficient = $coefficient;
+        $this->x = $x;
+        $this->y = $y;
+    }
     public function show()
     {
 
