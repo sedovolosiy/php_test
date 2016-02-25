@@ -19,14 +19,14 @@ abstract class Figure
 
     abstract function setScale();
 
-    function Move($x, $y)
+    public function Move($x, $y)
     {
         $this->x = $x;
         $this->y = $y;
-
-
     }
 }
+
+
 
 class Circle extends Figure
 {
@@ -40,7 +40,7 @@ class Circle extends Figure
         $this->coefficient = $coefficient;
     }
 
-    function Show()
+    public function Show()
     {
         echo "Координаты фигуры по оси x: " . $this->x . "<br />";
         echo "Координаты фигуры по оси y: " . $this->y . "<br />";
@@ -52,7 +52,7 @@ class Circle extends Figure
         $this->radius = $this->radius * $this->coefficient;
     }
 
-    function Area()
+    public function Area()
     {
 
         return pow($this->radius, 2) * pi();
@@ -67,29 +67,31 @@ class Sqaure extends Figure
     public $height = 0;
     public $width = 0;
 
-    function __construct($x, $y, $height, $width)
+    function __construct($x, $y, $height, $width, $coefficient)
     {
         parent::__construct($x, $y);
         $this->height = $height;
         $this->width = $width;
+        $this->coefficient = $coefficient;
     }
 
-    function Show()
+    public function Show()
     {
         echo "Координаты фигуры по оси x: " . $this->x . "<br />";
         echo "Координаты фигуры по оси y: " . $this->y . "<br />";
 
     }
 
-    function Area()
+    public function Area()
     {
         return $this->height * $this->width;
 
     }
 
-    function setScale()
+    public function setScale()
     {
-        $this->height*$this->width;
+        $this->height = $this->height*$this->coefficient;
+        $this->width = $this->width*$this->coefficient;
 
     }
 
@@ -100,22 +102,23 @@ class Treangle extends Figure
 
 //    public $a;
 
-    function __construct($x, $y, $width, $height)
+    function __construct($x, $y, $width, $height, $coefficient)
     {
         parent::__construct($x, $y);
         $this->width = $width;
         $this->height = $height;
+        $this->coefficient = $coefficient;
 
     }
 
-    function Show()
+    public function Show()
     {
         echo "Координаты фигуры по оси x: " . $this->x . "<br />";
         echo "Координаты фигуры по оси y: " . $this->y . "<br />";
 
     }
 
-    function Area()
+    public function Area()
     {
 //        $p = ($this->a+$this->b+$this->c)/2;
 //        return sqrt($p*($p-$this->a)*($p-$this->b)*($p-$this->c));
@@ -123,8 +126,10 @@ class Treangle extends Figure
 
     }
 
-    function setScale()
+    public function setScale()
     {
+        $this->width = $this->width*$this->coefficient;
+        $this->height = $this->height*$this->coefficient;
 
     }
 
@@ -164,7 +169,10 @@ $coefficient = $_POST['coefficient'];
 
 
 if ($type == 'square') {
-    $square = new Sqaure($x, $y, $height, $width);
+    $square = new Sqaure($x, $y, $height, $width, $coefficient);
+    if (!empty($coefficient)) {
+        $square->setScale();
+    }
     $square->Show();
     echo "Стороны прямоугольника: " . $square->height . "/" . $square->width . " Площадь прямоугольника: " . $square->Area() . "<br /><hr />";
 } // В зависимости от типа выбранной фигуры
@@ -176,7 +184,10 @@ elseif ($type == 'circle') {
     $circle->Show();
     echo "Радиус круга: " . $circle->radius . " Площадь круга: " . $circle->Area() . "<br /><hr />";
 } elseif ($type == 'treangle') {
-    $treangle = new Treangle($x, $y, $width, $height);
+    $treangle = new Treangle($x, $y, $width, $height, $coefficient);
+    if (!empty($coefficient)){
+        $treangle->setScale();
+    }
     $treangle->Show();
     echo "Высота треугольника: " . $treangle->height . " Основание треугольника: " . $treangle->width . " Площадь прямоугольника: " . $treangle->Area() . "<br /><hr />";
 }// создаём тот или иной объект
