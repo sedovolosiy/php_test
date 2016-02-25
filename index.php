@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Trainee work figure</title>
 </head>
 <body>
 <form action="?circle=1" method="post">
@@ -33,7 +33,7 @@
     <input type="submit" value="Результат"><hr />
 </form>
 <?php
-include 'figure.php';
+include 'interface.php';
 ?>
 
 </body>
