@@ -52,7 +52,7 @@ class Squared implements Figures
     }
 }
 
-class Treangle implements Figures
+class Treangles implements Figures
 {
     public function show()
     {
